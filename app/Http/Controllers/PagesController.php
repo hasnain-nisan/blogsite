@@ -13,10 +13,10 @@ class PagesController extends Controller
         if(Auth::check()) {
            $users = auth()->user()->following()->pluck('profiles.user_id');
            $posts = Post::whereIn('user_id', $users)->paginate(5);
-           return view('dashboard', compact('posts'));
+           return view('index', compact('posts'));
         } else {
           $posts = Post::orderBy('created_at', 'desc')->paginate(5);
-          return view('dashboard', compact('posts'));
+          return view('index', compact('posts'));
         }
     }
 
